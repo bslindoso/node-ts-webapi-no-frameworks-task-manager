@@ -1,12 +1,12 @@
-## Recursos sugeridos para a API
-### Endpoints
-- `GET /tasks`
+# Recursos sugeridos para a API
+## Endpoints
+### `GET /tasks`
 Retorna todas as tarefas armazenadas no arquivo database.json.
 
-- `GET /tasks/:id`
+### `GET /tasks/:id`
 Retorna a tarefas armazenada com o id especificado no arquivo database.json.
 
-- `POST /tasks`
+### `POST /tasks`
 Adiciona uma nova tarefa. O `corpo da requisição` pode conter algo como:
 
 ```json
@@ -28,7 +28,7 @@ Adiciona uma nova tarefa. O `corpo da requisição` pode conter algo como:
 ```
 > OBS: Enviar os dados pelo `body`da requisição, e não pelos parâmetros queryString.
 
-- `PUT /tasks/:id`
+### `PUT /tasks/:id`
 Atualiza uma tarefa existente pelo id. Você pode alterar, por exemplo, o título, description ou o status.
 
 #### Atualizando valores (payload)
@@ -50,10 +50,10 @@ Atualiza uma tarefa existente pelo id. Você pode alterar, por exemplo, o títul
 - `description`: String opcional.
 - `status`: Deve ser um dos valores permitidos (veja abaixo).
 
-- `DELETE /tasks/:id`
+### `DELETE /tasks/:id`
 Remove uma tarefa pelo id.
 
-- `POST /folowups/:id`
+### `POST /folowups/:id`
 Posta um acompanhamento de um user. O `corpo da requisição` pode conter algo como:
 
 ```json

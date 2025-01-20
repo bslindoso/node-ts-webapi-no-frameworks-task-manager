@@ -23,7 +23,7 @@ Adiciona uma nova tarefa. O `corpo da requisição` pode conter algo como:
   "created": "2025-01-19T10:59:12.982Z",
   "title": "Minha nova tarefa",
   "description": "Desenvolver um mecanismo inovador que permita que pinguins realizem teletransporte enquanto executam coreografias de dança no gelo. O sistema deve incluir luzes coloridas e efeitos sonoros inspirados em discotecas dos anos 80.",
-  "status": "backlog"
+  "status": "todo"
 }
 ```
 > OBS: Enviar os dados pelo `body`da requisição, e não pelos parâmetros queryString.
@@ -90,7 +90,7 @@ Posta um acompanhamento de um user. O `corpo da requisição` pode conter algo c
 - `post`: (Obrigatório) Comentário ou atualização descritiva.
 
 ### Status permitidos
-- `backlog`: Ainda não iniciado
+- `todo`: Ainda não iniciado
 - `doing`: Iniciado
 - `paused`: Pausado
 - `done`: Finalizado

@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "1",
+    "created": "2025-01-19T10:59:12.982Z",
+    "title": "Minha nova tarefa 'quase' impossível",
+    "description": "Desenvolver um mecanismo inovador que permita que pinguins realizem teletransporte enquanto executam coreografias de dança no gelo. O sistema deve incluir luzes coloridas e efeitos sonoros inspirados em discotecas dos anos 80.",
+    "followups": [
+      {
+        "postedDateTime": "2025-01-19T11:36:39.982Z",
+        "user": "bruno",
+        "post": "Bah, impossível realizar esta tarefa ainda este ano!"
+      },
+      {
+        "postedDateTime": "2025-01-19T12:02:31.982Z",
+        "user": "beatriz",
+        "post": "😽 vamos começar!"
+      }
+    ],
+    "status": "doing"
+  },
+  {
+    "id": "2",
+    "created": "2025-01-19T11:02:42.982Z",
+    "title": "Minha nova tarefa 'quase' impossível",
+    "description": "",
+    "status": "todo"
+  }
+]

@@ -6,9 +6,15 @@ const pathData = path.join(__dirname, "../repos/database.json")
 const language = "utf-8"
 
 
-export const tasksRepository = async (): Promise<TaskModel[]> => {
+export const tasksRepository = async (id?: number): Promise<TaskModel[]> => {
   const rawData = fs.readFileSync(pathData, language)
   let jsonFile = JSON.parse(rawData)
+
+  if (id) {
+    jsonFile = jsonFile.filter(
+      (task: TaskModel) => id === Number(task.id)
+    )
+  }
 
   return jsonFile
 }

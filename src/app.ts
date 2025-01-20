@@ -18,7 +18,7 @@ export const app = async (request: IncomingMessage, response: ServerResponse): P
     ? Number(partsUrl[2])
     : null
 
-  console.log(`[${request.method}] Rota "${baseurl}" => ID "${taskId}"`)
+  // console.log(`[${request.method}] Rota "${baseurl}" => ID "${taskId}"`)
 
   // Se o que vier após a '/' não for um número (ID)
   if (Number.isNaN(Number(taskId))) {
@@ -29,11 +29,11 @@ export const app = async (request: IncomingMessage, response: ServerResponse): P
     await getTasksList(request, response)
   }
   // GET /tasks/:id
-  else if (request.method === HttpMethod.GET && baseurl === Routes.LIST_TASKS && taskId !== null) {
+  else if (request.method === HttpMethod.GET && baseurl === Routes.GET_TASK && taskId !== null) {
     await getTaskById(request, response, taskId)
   }
   // POST /tasks
-  else if (request.method === HttpMethod.POST && baseurl === Routes.LIST_TASKS && taskId === null) {
+  else if (request.method === HttpMethod.POST && baseurl === Routes.CREATE_TASK && taskId === null) {
     await postTask(request, response)
   } else {
     await unknownRoute(request, response)

@@ -1,4 +1,4 @@
-# Recursos sugeridos para a API
+# API Gerenciador de Tarefas
 ## Endpoints
 ### `GET /tasks`
 Retorna todas as tarefas armazenadas no arquivo database.json.
@@ -54,7 +54,7 @@ Atualiza uma tarefa existente pelo id. Você pode alterar, por exemplo, o títul
 Remove uma tarefa pelo id.
 
 ### `POST /folowups/:id`
-Posta um acompanhamento de um user. O `corpo da requisição` pode conter algo como:
+Posta um comentário ou atualização de um user. O `corpo da requisição` pode conter algo como:
 
 ```json
 {
@@ -72,13 +72,13 @@ Posta um acompanhamento de um user. O `corpo da requisição` pode conter algo c
   "title": "Minha nova tarefa 'quase' impossível",
   "description": "Desenvolver um mecanismo inovador que permita que pinguins realizem teletransporte enquanto executam coreografias de dança no gelo. O sistema deve incluir luzes coloridas e efeitos sonoros inspirados em discotecas dos anos 80.",
   "followups": [{
-    "postedDateTime" : "2025-01-19T11:36:39.982Z",
     "user": "bruno",
+    "posted" : "2025-01-19T11:36:39.982Z",
     "post": "Bah, impossível realizar esta tarefa ainda este ano!"
   },
   {
-    "postedDateTime" : "2025-01-19T12:02:31.982Z",
     "user": "beatriz",
+    "posted" : "2025-01-19T12:02:31.982Z",
     "post": "😽 vamos começar!"
   }],
   "status": "doing"
@@ -97,4 +97,4 @@ Posta um acompanhamento de um user. O `corpo da requisição` pode conter algo c
 - `canceled`: Cancelado
 
 ### Timestamps automáticos:
-  Created e postedDateTime são gerados automaticamente.
+  Created e posted são gerados automaticamente.

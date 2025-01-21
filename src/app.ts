@@ -6,21 +6,21 @@ import { getTaskById, getTasksList, postTask, unknownRoute, unprocessableEntity 
 
 export const app = async (request: IncomingMessage, response: ServerResponse): Promise<void> => {
 
-  // Divide a URL em partes usando '/' como separador e pega as partes necessárias
-  // Exemplo: /tasks/123 -> ['', 'tasks', '123']
+  // Split URL into parts using '/' as separator and get the necessary parts
+  // Example: /tasks/123 -> ['', 'tasks', '123']
   const partsUrl = request.url?.split('/') ?? ["", ""]
 
-  // Obtém a rota base da URL (ex: /tasks)
+  // Get the base route from URL (ex: /tasks)
   const baseurl = `/${partsUrl[1]}`
 
-  // Obtém o ID da URL se existir (ex: 123), senão retorna null
+  // Get ID from URL if exists (ex: 123), otherwise return null
   const taskId: number | null = (partsUrl.length > 2) && partsUrl[2] !== ""
     ? Number(partsUrl[2])
     : null
 
-  // console.log(`[${request.method}] Rota "${baseurl}" => ID "${taskId}"`)
+  // console.log(`[${request.method}] Route "${baseurl}" => ID "${taskId}"`)
 
-  // Se o que vier após a '/' não for um número (ID)
+  // If what comes after '/' is not a number (ID)
   if (Number.isNaN(Number(taskId))) {
     await unprocessableEntity(request, response)
   }

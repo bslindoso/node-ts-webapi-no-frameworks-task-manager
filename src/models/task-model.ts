@@ -5,9 +5,9 @@ export interface TaskModel {
   created?: string
   title: string
   description: string
-  followups?: FollowUpModel[] // Campo opcional
-  status?: 'todo' | 'doing' | 'done' | 'canceled' | 'paused'// Enumeração de status possíveis
-  [key: string]: any // Permite adicionar campos dinâmicos
+  followups?: FollowUpModel[] // Optional field
+  status?: 'todo' | 'doing' | 'done' | 'canceled' | 'paused' // Possible status enumeration
+  [key: string]: any // Allows adding dynamic fields
 }
 
 export const isTaskModel = (obj: any): obj is TaskModel => {

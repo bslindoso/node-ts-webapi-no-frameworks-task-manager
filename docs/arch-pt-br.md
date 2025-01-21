@@ -97,4 +97,4 @@ Posta um comentário ou atualização de um user. O `corpo da requisição` pode
 - `canceled`: Cancelado
 
 ### Timestamps automáticos:
-  Created e posted são gerados automaticamente.
+  `Created` e `posted` são gerados automaticamente.

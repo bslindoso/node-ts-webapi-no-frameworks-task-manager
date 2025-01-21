@@ -2,6 +2,8 @@ import { IncomingMessage, ServerResponse } from "http";
 import { isTaskModel, TaskModel } from "../models/task-model";
 import { StatusCode } from "../utils/status-code"
 import { ContentType } from "../utils/content-type";
+import { saveTaskRepository } from "../repos/tasks-repository";
+import { TaskDTOModel } from "../models/task-dto-model";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
 
@@ -13,9 +15,9 @@ export const serviceCreateTask = async (request: IncomingMessage, response: Serv
     parsedBody = JSON.parse(body);
   }
   catch (error) {
-    response.writeHead(StatusCode.BAD_REQUEST, DEFAULT_CONTENT);
-    response.write(JSON.stringify({ message: "Invalid JSON format" }));
-    return response.end();
+    response.writeHead(StatusCode.BAD_REQUEST, DEFAULT_CONTENT)
+    response.write(JSON.stringify({ message: "Invalid JSON format" }))
+    return // AVALIAR ISSO
   }
 
   // Verifica se o objeto é do tipo TaskModel
@@ -25,8 +27,16 @@ export const serviceCreateTask = async (request: IncomingMessage, response: Serv
     response.write(JSON.stringify({
       message: "Missing property 'title' and 'description'"
     }))
+    return // AVALIAR ISSO
   }
 
-  // return response.end()
+  const data = await saveTaskRepository(parsedBody)
+
+  const responseFormat: TaskDTOModel = {
+    statusCode: 0,
+    body: JSON.stringify(data)
+  }
+
+  return responseFormat
 
 }

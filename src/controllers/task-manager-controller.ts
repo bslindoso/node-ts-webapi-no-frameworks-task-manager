@@ -31,6 +31,8 @@ export const getTaskById = async (request: IncomingMessage, response: ServerResp
 export const postTask = async (request: IncomingMessage, response: ServerResponse) => {
   const body: string = await getRequestBody(request, response)
   const content = await serviceCreateTask(request, response, body)
+
+  if (!content) response.end() // AVALIAR ISSO AQUI
 }
 
 export const unknownRoute = async (request: IncomingMessage, response: ServerResponse) => {

@@ -29,9 +29,11 @@ export const getTaskById = async (request: IncomingMessage, response: ServerResp
 
 export const postTask = async (request: IncomingMessage, response: ServerResponse) => {
   const body: string = await getRequestBody(request, response)
-  const content = await serviceCreateTask(request, response, body)
+  const content: TaskDTOModel = await serviceCreateTask(request, response, body)
 
-  response.end()
+  response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
+  response.write(content.body) // saves in response content
+  response.end() // finishes
 }
 
 export const unknownRoute = async (request: IncomingMessage, response: ServerResponse) => {

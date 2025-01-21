@@ -15,28 +15,22 @@ export const serviceCreateTask = async (request: IncomingMessage, response: Serv
     parsedBody = JSON.parse(body);
   }
   catch (error) {
-    response.writeHead(StatusCode.BAD_REQUEST, DEFAULT_CONTENT)
-    response.write(JSON.stringify({ message: "Invalid JSON format" }))
-    return // EVALUATE THIS
+    return {
+      statusCode: StatusCode.UNPROCESSABLE_ENTITY,
+      body: JSON.stringify({ message: "Invalid JSON format" })
+    }
   }
 
   // Checks if the object is TaskModel type
-  // console.log(`isTaskModel: ${isTaskModel(parsedBody)} - ${JSON.stringify(parsedBody)}`)
   if (!isTaskModel(parsedBody)) {
-    response.writeHead(StatusCode.UNPROCESSABLE_ENTITY, DEFAULT_CONTENT)
-    response.write(JSON.stringify({
-      message: "Missing property 'title' and/or 'description'"
-    }))
-    return // EVALUATE THIS
+    return {
+      statusCode: StatusCode.UNPROCESSABLE_ENTITY,
+      body: JSON.stringify({ message: "Missing property 'title' and/or 'description'" })
+    }
   }
 
-  const data = await saveTaskRepository(parsedBody)
+  const data: TaskDTOModel = await saveTaskRepository(parsedBody)
 
-  const responseFormat: TaskDTOModel = {
-    statusCode: 0,
-    body: JSON.stringify(data)
-  }
-
-  return responseFormat
+  return data
 
 }

@@ -6,7 +6,6 @@ import { StatusCode } from "../utils/status-code";
 import { serviceGetListById } from "../services/get-task-by-id-service";
 import { getRequestBody } from "../services/get-request-body";
 import { serviceCreateTask } from "../services/create-new-task-service";
-import { TaskModel } from "../models/task-model";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
 
@@ -14,25 +13,25 @@ export const getTasksList = async (request: IncomingMessage, response: ServerRes
 
   const content: TaskDTOModel = await serviceListTasks()
 
-  response.writeHead(content.statusCode, DEFAULT_CONTENT); // salva no header do response
-  response.write(content.body) // salva no content do response
-  response.end() // finaliza
+  response.writeHead(content.statusCode, DEFAULT_CONTENT); // saves in response header
+  response.write(content.body) // saves in response content
+  response.end() // finishes
 }
 
 export const getTaskById = async (request: IncomingMessage, response: ServerResponse, taskId: number) => {
 
   const content: TaskDTOModel = await serviceGetListById(taskId)
 
-  response.writeHead(content.statusCode, DEFAULT_CONTENT) // salva no header do response
-  response.write(content.body) // salva no content do response
-  response.end() // finaliza
+  response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
+  response.write(content.body) // saves in response content
+  response.end() // finishes
 }
 
 export const postTask = async (request: IncomingMessage, response: ServerResponse) => {
   const body: string = await getRequestBody(request, response)
   const content = await serviceCreateTask(request, response, body)
 
-  if (!content) response.end() // AVALIAR ISSO AQUI
+  response.end()
 }
 
 export const unknownRoute = async (request: IncomingMessage, response: ServerResponse) => {

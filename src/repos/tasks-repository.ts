@@ -21,5 +21,5 @@ export const tasksRepository = async (id?: number): Promise<TaskModel[]> => {
 }
 
 export const saveTaskRepository = async (task: TaskModel) => {
-
+  console.log(task)
 }

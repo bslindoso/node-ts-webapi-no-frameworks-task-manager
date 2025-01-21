@@ -25,7 +25,7 @@ export const serviceCreateTask = async (request: IncomingMessage, response: Serv
   if (!isTaskModel(parsedBody)) {
     response.writeHead(StatusCode.UNPROCESSABLE_ENTITY, DEFAULT_CONTENT)
     response.write(JSON.stringify({
-      message: "Missing property 'title' and 'description'"
+      message: "Missing property 'title' and/or 'description'"
     }))
     return // EVALUATE THIS
   }

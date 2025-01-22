@@ -7,6 +7,7 @@ import { serviceGetTaskById } from "../services/get-task-by-id-service";
 import { getRequestBody } from "../services/utils/get-request-body";
 import { serviceCreateTask } from "../services/create-new-task-service";
 import { serviceUpdateTask } from "../services/update-task-by-id-service";
+import { serviceRemoveTask } from "../services/remove-task-by-id-service";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
 
@@ -35,9 +36,9 @@ export const listTasks = async (request: IncomingMessage, response: ServerRespon
   response.end() // finishes
 }
 
-export const getTaskById = async (request: IncomingMessage, response: ServerResponse, taskId: number) => {
+export const getTaskById = async (request: IncomingMessage, response: ServerResponse, id: number) => {
 
-  const content: TaskDTOModel = await serviceGetTaskById(taskId)
+  const content: TaskDTOModel = await serviceGetTaskById(id)
 
   response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
   response.write(content.body) // saves in response content
@@ -53,9 +54,17 @@ export const createTask = async (request: IncomingMessage, response: ServerRespo
   response.end() // finishes
 }
 
-export const updateTaskById = async (request: IncomingMessage, response: ServerResponse, taskId: number) => {
+export const updateTaskById = async (request: IncomingMessage, response: ServerResponse, id: number) => {
   const body: string = await getRequestBody(request, response)
-  const content: TaskDTOModel = await serviceUpdateTask(taskId, body)
+  const content: TaskDTOModel = await serviceUpdateTask(id, body)
+
+  response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
+  response.write(content.body) // saves in response content
+  response.end() // finishes
+}
+
+export const removeTaskById = async (request: IncomingMessage, response: ServerResponse, id: number) => {
+  const content: TaskDTOModel = await serviceRemoveTask(id)
 
   response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
   response.write(content.body) // saves in response content

@@ -1,3 +1,4 @@
+import { Status } from "../utils/status-types"
 import { FollowUpModel } from "./followup-model"
 
 export interface TaskModel {
@@ -6,7 +7,7 @@ export interface TaskModel {
   title: string
   description: string
   followups?: FollowUpModel[] // Optional field
-  status: 'todo' | 'doing' | 'done' | 'canceled' | 'paused' // Possible status enumeration
+  status: Status // Possible status 
 }
 
 export const isTaskModel = (obj: any): obj is TaskModel => {

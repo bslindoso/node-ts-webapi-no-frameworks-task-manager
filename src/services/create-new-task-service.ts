@@ -1,6 +1,6 @@
 import { StatusCode } from "../utils/status-code"
 import { ContentType } from "../utils/content-type";
-import { saveTaskToRepository, getTasksFromRepository } from "../repos/tasks-repository";
+import { getTasksFromRepository, writeTaskToRepository } from "../repos/tasks-repository";
 import { TaskDTOModel } from "../models/task-dto-model";
 import { isTaskModel, TaskModel } from "../models/task-model";
 import { hasExtraProperties } from "./utils/body-has-extra-properties";
@@ -49,10 +49,9 @@ export const serviceCreateTask = async (body: string) => {
     status: 'todo'
   }
 
-  // const database: TaskModel[] = await getTasksFromRepository()
   tasks.push(orderedTask)
 
-  const data: TaskDTOModel = await saveTaskToRepository(tasks)
+  const data: TaskDTOModel = await writeTaskToRepository(tasks, 'save')
 
   return data
 }

@@ -37,7 +37,7 @@ Updates an existing task by `id`. You can change, for example, the title, descri
 ##### Updating values (payload)
 ```json
 {
-  "title": "My 'almost' impossible task",
+  "title": "My 'almost' impossible task",  
   "status": "doing"
 }
 ```
@@ -50,9 +50,9 @@ Updates an existing task by `id`. You can change, for example, the title, descri
 ```
 
 ##### Data validations
-- `title`: (Required) String with a limit of 50 characters.
-- `description`: (Required) String with no limits.
-- `status`: Must be one of the allowed values (see below).
+- `title`: (Opitional) String with a limit of 50 characters.
+- `description`: (Opitional) String with no limits.
+- `status`: (Opitional) Must be one of the allowed values (see below).
 
 #### `DELETE /tasks/:id`
 Removes a task by `id`.
@@ -155,9 +155,9 @@ Atualiza uma tarefa existente pelo `id`. Você pode alterar, por exemplo, o tít
 ```
 
 ##### Validações de dados
-- `title`: (Obrigatório) String com limite de 50 caracteres.
-- `description`: (Obrigatório) String sem limites.
-- `status`: Deve ser um dos valores permitidos (veja abaixo).
+- `title`: (Opicional) String com limite de 50 caracteres.
+- `description`: (Opicional) String sem limites.
+- `status`: (Opicional) Deve ser um dos valores permitidos (veja abaixo).
 
 #### `DELETE /tasks/:id`
 Remove uma tarefa pelo `id`.

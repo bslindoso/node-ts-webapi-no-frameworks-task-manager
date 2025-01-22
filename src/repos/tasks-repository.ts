@@ -3,6 +3,7 @@ import path from 'path'
 import { TaskModel } from '../models/task-model'
 import { TaskDTOModel } from '../models/task-dto-model'
 import { StatusCode } from '../utils/status-code'
+import { OperationType } from '../utils/operation-types'
 
 const pathData = path.join(__dirname, "/database.json")
 const language = "utf-8"
@@ -22,81 +23,33 @@ export const getTasksFromRepository = async (id?: number): Promise<TaskModel[]> 
   return jsonFile
 }
 
-export const saveTaskToRepository = async (task: TaskModel[]): Promise<TaskDTOModel> => {
+export const writeTaskToRepository = async (tasks: TaskModel[], operation: OperationType): Promise<TaskDTOModel> => {
   try {
-
-    // write the new content to the database file
-    await fs.promises.writeFile(pathData, JSON.stringify(task, null, 2), language)
-
-    const responseFormat: TaskDTOModel = {
-      statusCode: StatusCode.CREATED,
-      body: JSON.stringify({ message: `Task saved successfuly!` })
-    }
-
-    return responseFormat
-
-  } catch (error) {
-
-    const responseFormat: TaskDTOModel = {
-      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
-      body: JSON.stringify({ message: `Error to save the new Task: ${error}` })
-    }
-
-    return responseFormat
-  }
-}
-
-export const updateTaskToRepository = async (id: number, tasks: TaskModel[]): Promise<TaskDTOModel> => {
-  try {
-
     await fs.promises.writeFile(pathData, JSON.stringify(tasks, null, 2), language)
 
-    const responseFormat: TaskDTOModel = {
-      statusCode: StatusCode.OK,
-      body: JSON.stringify({ message: `Task updated successfuly!` })
+    const messages = {
+      save: 'Task saved successfully!',
+      update: 'Task updated successfully!',
+      remove: 'Task removed successfully'
     }
 
-    return responseFormat
+    const statusCodes = {
+      save: StatusCode.CREATED,
+      update: StatusCode.OK,
+      remove: StatusCode.OK
+    }
+
+    return {
+      statusCode: statusCodes[operation],
+      body: JSON.stringify({ message: messages[operation] })
+    }
 
   } catch (error) {
-
-    const responseFormat: TaskDTOModel = {
+    return {
       statusCode: StatusCode.INTERNAL_SERVER_ERROR,
-      body: JSON.stringify({ message: `Error to update the new Task: ${error} }` })
+      body: JSON.stringify({
+        message: `Error ${operation}ing task: ${error}`
+      })
     }
-
-    return responseFormat
   }
 }
-
-export const removeTaskFromRepository = async (id: number): Promise<TaskDTOModel> => {
-
-  const tasks: TaskModel[] = await getTasksFromRepository(id)
-
-  if (tasks.length === 0) return {
-    statusCode: StatusCode.NO_CONTENT,
-    body: `[]`
-  }
-
-  // TRY TO REMOVE 
-
-
-
-
-  //////////
-
-  const returnObj = {
-    message: `Task removed sucessfuly`,
-    data: [...tasks]
-  }
-
-  console.log(returnObj)
-
-
-  return {
-    statusCode: StatusCode.OK,
-    body: `${JSON.stringify(returnObj)}`
-  }
-}
-
-

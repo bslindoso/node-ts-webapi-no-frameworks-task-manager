@@ -1,5 +1,5 @@
 import { TaskDTOModel } from "../models/task-dto-model";
-import { getTasksFromRepository, updateTaskToRepository } from "../repos/tasks-repository";
+import { getTasksFromRepository, writeTaskToRepository } from "../repos/tasks-repository";
 import { StatusCode } from "../utils/status-code";
 import { TaskModel } from "../models/task-model";
 import { hasExtraProperties } from "./utils/body-has-extra-properties";
@@ -51,7 +51,7 @@ export const serviceUpdateTask = async (id: number, body: string): Promise<TaskD
     taskFound.status = parsedBody.status
   }
 
-  const responseFormat: TaskDTOModel = await updateTaskToRepository(id, tasks)
+  const responseFormat: TaskDTOModel = await writeTaskToRepository(tasks, 'update')
 
   return responseFormat
 }

@@ -1,11 +1,11 @@
 import { TaskDTOModel } from "../models/task-dto-model";
 import { TaskModel } from "../models/task-model";
-import { tasksRepository } from "../repos/tasks-repository";
+import { getTasksRepository } from "../repos/tasks-repository";
 import { StatusCode } from "../utils/status-code";
 
-export const serviceGetListById = async (id: number): Promise<TaskDTOModel> => {
+export const serviceGetTaskById = async (id: number): Promise<TaskDTOModel> => {
 
-  const data: TaskModel[] = await tasksRepository(id)
+  const data: TaskModel[] = await getTasksRepository(id)
 
   const responseFormat: TaskDTOModel = {
     statusCode: (data.length !== 0) ? StatusCode.OK : StatusCode.NO_CONTENT,

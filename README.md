@@ -22,8 +22,8 @@ Adds a new task. The `request body` can contain something like:
 ##### The `database.json` file should be updated to:
 ```json
 {
-  "id": "1",
-  "created": "2025-01-19T10:59:12.982Z",
+  "id": 1,
+  "created": 2025-01-19T10:59:12.982Z,
   "title": "My new task",
   "description": "Develop an innovative mechanism that allows penguins to teleport while performing ice dance choreographies. The system must include colorful lights and sound effects inspired by 1980s discos.",
   "status": "todo"
@@ -51,7 +51,7 @@ Updates an existing task by `id`. You can change, for example, the title, descri
 
 ##### Data validations
 - `title`: (Required) String with a limit of 50 characters.
-- `description`: Optional string.
+- `description`: (Required) String with no limits.
 - `status`: Must be one of the allowed values (see below).
 
 #### `DELETE /tasks/:id`
@@ -71,8 +71,8 @@ Posts a comment or update from a user. The `request body` can contain something 
 
 ```json
 {
-  "id": "1",
-  "created": "2025-01-19T10:59:12.982Z",
+  "id": 1,
+  "created": 2025-01-19T10:59:12.982Z,
   "title": "My 'almost' impossible task",
   "description": "Develop an innovative mechanism that allows penguins to teleport while performing ice dance choreographies. The system must include colorful lights and sound effects inspired by 1980s discos.",
   "followups": [{
@@ -127,8 +127,8 @@ Adiciona uma nova tarefa. O `corpo da requisição` pode conter algo como:
 ##### O arquivo `database.json` deve ser atualizado para:
 ```json
 {
-  "id": "1",
-  "created": "2025-01-19T10:59:12.982Z",
+  "id": 1,
+  "created": 2025-01-19T10:59:12.982Z,
   "title": "Minha nova tarefa",
   "description": "Desenvolver um mecanismo inovador que permita que pinguins realizem teletransporte enquanto executam coreografias de dança no gelo. O sistema deve incluir luzes coloridas e efeitos sonoros inspirados em discotecas dos anos 80.",
   "status": "todo"
@@ -156,7 +156,7 @@ Atualiza uma tarefa existente pelo `id`. Você pode alterar, por exemplo, o tít
 
 ##### Validações de dados
 - `title`: (Obrigatório) String com limite de 50 caracteres.
-- `description`: String opcional.
+- `description`: (Obrigatório) String sem limites.
 - `status`: Deve ser um dos valores permitidos (veja abaixo).
 
 #### `DELETE /tasks/:id`
@@ -176,8 +176,8 @@ Posta um comentário ou atualização de um usuário. O `corpo da requisição` 
 
 ```json
 {
-  "id": "1",
-  "created": "2025-01-19T10:59:12.982Z",
+  "id": 1,
+  "created": 2025-01-19T10:59:12.982Z,
   "title": "Minha nova tarefa 'quase' impossível",
   "description": "Desenvolver um mecanismo inovador que permita que pinguins realizem teletransporte enquanto executam coreografias de dança no gelo. O sistema deve incluir luzes coloridas e efeitos sonoros inspirados em discotecas dos anos 80.",
   "followups": [{

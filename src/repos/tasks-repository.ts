@@ -8,7 +8,7 @@ const pathData = path.join(__dirname, "/database.json")
 const language = "utf-8"
 
 
-export const tasksRepository = async (id?: number): Promise<TaskModel[]> => {
+export const getTasksRepository = async (id?: number): Promise<TaskModel[]> => {
   const rawData = fs.readFileSync(pathData, language)
   let jsonFile = JSON.parse(rawData)
 

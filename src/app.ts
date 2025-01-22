@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http"
 import { HttpMethod } from "./utils/http-methods"
 import { Routes } from "./routes/routes"
-import { getTaskById, getTasksList, postTask, unknownRoute, unprocessableEntity } from "./controllers/task-manager-controller"
+import { getTaskById, listTasks, createTask, unknownRoute, unprocessableEntity, updateTaskById } from "./controllers/task-manager-controller"
 
 
 export const app = async (request: IncomingMessage, response: ServerResponse): Promise<void> => {
@@ -25,17 +25,23 @@ export const app = async (request: IncomingMessage, response: ServerResponse): P
     await unprocessableEntity(request, response)
   }
   // GET /tasks
-  else if (request.method === HttpMethod.GET && baseurl === Routes.LIST_TASKS && taskId === null) {
-    await getTasksList(request, response)
+  else if (request.method === HttpMethod.GET && baseurl === Routes.LIST_TASKS && !taskId) {
+    await listTasks(request, response)
   }
   // GET /tasks/:id
-  else if (request.method === HttpMethod.GET && baseurl === Routes.GET_TASK && taskId !== null) {
+  else if (request.method === HttpMethod.GET && baseurl === Routes.GET_TASK && taskId) {
     await getTaskById(request, response, taskId)
   }
   // POST /tasks
-  else if (request.method === HttpMethod.POST && baseurl === Routes.CREATE_TASK && taskId === null) {
-    await postTask(request, response)
-  } else {
+  else if (request.method === HttpMethod.POST && baseurl === Routes.CREATE_TASK && !taskId) {
+    await createTask(request, response)
+  }
+  // PUT /tasks/:id
+  else if (request.method === HttpMethod.PUT && baseurl === Routes.UPDATE_TASK && taskId) {
+    await updateTaskById(request, response, taskId)
+  }
+
+  else {
     await unknownRoute(request, response)
   }
 }

@@ -3,13 +3,14 @@ import { serviceListTasks } from "../services/list-tasks-service";
 import { ContentType } from "../utils/content-type";
 import { TaskDTOModel } from "../models/task-dto-model";
 import { StatusCode } from "../utils/status-code";
-import { serviceGetListById } from "../services/get-task-by-id-service";
+import { serviceGetTaskById } from "../services/get-task-by-id-service";
 import { getRequestBody } from "../services/get-request-body";
 import { serviceCreateTask } from "../services/create-new-task-service";
+import { serviceUpdateTask } from "../services/update-task-by-id-service";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
 
-export const getTasksList = async (request: IncomingMessage, response: ServerResponse) => {
+export const listTasks = async (request: IncomingMessage, response: ServerResponse) => {
 
   const content: TaskDTOModel = await serviceListTasks()
 
@@ -20,16 +21,25 @@ export const getTasksList = async (request: IncomingMessage, response: ServerRes
 
 export const getTaskById = async (request: IncomingMessage, response: ServerResponse, taskId: number) => {
 
-  const content: TaskDTOModel = await serviceGetListById(taskId)
+  const content: TaskDTOModel = await serviceGetTaskById(taskId)
 
   response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
   response.write(content.body) // saves in response content
   response.end() // finishes
 }
 
-export const postTask = async (request: IncomingMessage, response: ServerResponse) => {
+export const createTask = async (request: IncomingMessage, response: ServerResponse) => {
   const body: string = await getRequestBody(request, response)
   const content: TaskDTOModel = await serviceCreateTask(request, response, body)
+
+  response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
+  response.write(content.body) // saves in response content
+  response.end() // finishes
+}
+
+export const updateTaskById = async (request: IncomingMessage, response: ServerResponse, taskId: number) => {
+
+  const content: TaskDTOModel = await serviceUpdateTask(request, response, taskId)
 
   response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
   response.write(content.body) // saves in response content

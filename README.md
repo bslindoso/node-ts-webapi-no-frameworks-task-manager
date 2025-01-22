@@ -1,5 +1,10 @@
 # Task Manager API
 
+[🇺🇸 English](#english-section) | [🇧🇷 Português](#portuguese-section)
+
+<details open id="english-section">
+<summary style='color: lightgreen'>🇺🇸 English</summary>
+
 ## English
 
 ### Endpoints
@@ -102,8 +107,12 @@ Posts a comment or update from a user. The `request body` can contain something 
 
 #### Automatic Timestamps:
 `Created` and `posted` are generated automatically.
-
 ---
+[⬆️ Back to top](#task-manager-api)
+</details>
+
+<details id="portuguese-section">
+<summary style='color: lightgreen'>🇧🇷 Português</summary>
 
 ## Português
 
@@ -207,3 +216,7 @@ Posta um comentário ou atualização de um usuário. O `corpo da requisição` 
 
 #### Timestamps automáticos:
 `Created` e `posted` são gerados automaticamente.
+
+[⬆️ Voltar ao topo](#task-manager-api)
+
+</details>

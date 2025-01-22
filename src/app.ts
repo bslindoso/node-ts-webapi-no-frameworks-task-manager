@@ -18,8 +18,6 @@ export const app = async (request: IncomingMessage, response: ServerResponse): P
     ? Number(partsUrl[2])
     : null
 
-  // console.log(`[${request.method}] Route "${baseurl}" => ID "${taskId}"`)
-
   // If what comes after '/' is not a number (ID)
   if (Number.isNaN(Number(taskId))) {
     await unprocessableEntity(request, response)

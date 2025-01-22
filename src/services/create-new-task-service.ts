@@ -3,7 +3,7 @@ import { ContentType } from "../utils/content-type";
 import { getTasksFromRepository, writeTaskToRepository } from "../repos/tasks-repository";
 import { TaskDTOModel } from "../models/task-dto-model";
 import { isTaskModel, TaskModel } from "../models/task-model";
-import { hasExtraProperties } from "./utils/body-has-extra-properties";
+import { hasExtraPropertiesFromTask } from "./utils/body-has-extra-properties";
 import { HttpMethod } from "../utils/http-methods";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
@@ -31,7 +31,7 @@ export const serviceCreateTask = async (body: string) => {
   }
 
   // Check if there some extra properties on body
-  if (hasExtraProperties(parsedBody, HttpMethod.POST)) {
+  if (hasExtraPropertiesFromTask(parsedBody, HttpMethod.POST)) {
     return {
       statusCode: StatusCode.UNPROCESSABLE_ENTITY,
       body: JSON.stringify({ message: "Verify extra porperties" })

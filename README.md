@@ -107,8 +107,9 @@ Posts a comment or update from a user. The `request body` can contain something 
 
 #### Automatic Timestamps:
 `Created` and `posted` are generated automatically.
----
+
 [⬆️ Back to top](#task-manager-api)
+---
 </details>
 
 <details id="portuguese-section">

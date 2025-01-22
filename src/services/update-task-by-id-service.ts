@@ -2,7 +2,7 @@ import { TaskDTOModel } from "../models/task-dto-model";
 import { getTasksFromRepository, writeTaskToRepository } from "../repos/tasks-repository";
 import { StatusCode } from "../utils/status-code";
 import { TaskModel } from "../models/task-model";
-import { hasExtraProperties } from "./utils/body-has-extra-properties";
+import { hasExtraPropertiesFromTask } from "./utils/body-has-extra-properties";
 import { HttpMethod } from "../utils/http-methods";
 
 export const serviceUpdateTask = async (id: number, body: string): Promise<TaskDTOModel> => {
@@ -20,7 +20,7 @@ export const serviceUpdateTask = async (id: number, body: string): Promise<TaskD
   }
 
   // Check if there some extra properties on body
-  if (hasExtraProperties(parsedBody, HttpMethod.PUT)) {
+  if (hasExtraPropertiesFromTask(parsedBody, HttpMethod.PUT)) {
     return {
       statusCode: StatusCode.UNPROCESSABLE_ENTITY,
       body: JSON.stringify({ message: "Verify extra porperties" })

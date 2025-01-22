@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from "http";
+import { IncomingMessage, request, ServerResponse } from "http";
 import { serviceListTasks } from "../services/list-tasks-service";
 import { ContentType } from "../utils/content-type";
 import { TaskDTOModel } from "../models/task-dto-model";
@@ -8,6 +8,7 @@ import { getRequestBody } from "../services/utils/get-request-body";
 import { serviceCreateTask } from "../services/create-new-task-service";
 import { serviceUpdateTask } from "../services/update-task-by-id-service";
 import { serviceRemoveTask } from "../services/remove-task-by-id-service";
+import { serviceCreateFollowUp } from "../services/create-followup-service";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
 
@@ -65,6 +66,15 @@ export const updateTaskById = async (request: IncomingMessage, response: ServerR
 
 export const removeTaskById = async (request: IncomingMessage, response: ServerResponse, id: number) => {
   const content: TaskDTOModel = await serviceRemoveTask(id)
+
+  response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
+  response.write(content.body) // saves in response content
+  response.end() // finishes
+}
+
+export const createFollowUp = async (request: IncomingMessage, response: ServerResponse, id: number) => {
+  const body = await getRequestBody(request, response)
+  const content: TaskDTOModel = await serviceCreateFollowUp(id, body)
 
   response.writeHead(content.statusCode, DEFAULT_CONTENT) // saves in response header
   response.write(content.body) // saves in response content

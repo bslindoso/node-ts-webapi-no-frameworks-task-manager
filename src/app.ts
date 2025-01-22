@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http"
 import { HttpMethod } from "./utils/http-methods"
 import { Routes } from "./routes/routes"
-import { getTaskById, listTasks, createTask, unknownRoute, unprocessableEntity, updateTaskById, removeTaskById } from "./controllers/task-manager-controller"
+import { getTaskById, listTasks, createTask, unknownRoute, unprocessableEntity, updateTaskById, removeTaskById, createFollowUp } from "./controllers/task-manager-controller"
 
 
 export const app = async (request: IncomingMessage, response: ServerResponse): Promise<void> => {
@@ -41,6 +41,10 @@ export const app = async (request: IncomingMessage, response: ServerResponse): P
   // DELETE /tasks/:id
   else if (request.method === HttpMethod.DELETE && baseurl === Routes.DELETE_TASK && id) {
     await removeTaskById(request, response, id)
+  }
+  // POST /followups/:id
+  else if (request.method === HttpMethod.POST && baseurl === Routes.CREATE_FOLLOWUP && id) {
+    await createFollowUp(request, response, id)
   }
 
   else {

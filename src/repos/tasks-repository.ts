@@ -13,7 +13,6 @@ export const getTasksFromRepository = async (id?: number): Promise<TaskModel[]> 
   const rawData = fs.readFileSync(pathData, language)
   let jsonFile = JSON.parse(rawData)
 
-
   if (id) {
     jsonFile = jsonFile.filter(
       (task: TaskModel) => id === Number(task.id)
@@ -30,13 +29,15 @@ export const writeTaskToRepository = async (tasks: TaskModel[], operation: Opera
     const messages = {
       save: 'Task saved successfully!',
       update: 'Task updated successfully!',
-      remove: 'Task removed successfully'
+      remove: 'Task removed successfully',
+      saveFollowup: 'Followup saved sucessfully!'
     }
 
     const statusCodes = {
       save: StatusCode.CREATED,
       update: StatusCode.OK,
-      remove: StatusCode.OK
+      remove: StatusCode.OK,
+      saveFollowup: StatusCode.OK,
     }
 
     return {

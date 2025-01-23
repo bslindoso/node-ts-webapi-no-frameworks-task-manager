@@ -1,5 +1,5 @@
 export interface FollowUpModel {
-  postedDateTime: string
+  posted: Date
   user: string
   post: string
 }

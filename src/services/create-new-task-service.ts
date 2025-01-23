@@ -5,6 +5,7 @@ import { TaskDTOModel } from "../models/task-dto-model";
 import { isTaskModel, TaskModel } from "../models/task-model";
 import { hasExtraPropertiesFromTask } from "./utils/body-has-extra-properties";
 import { HttpMethod } from "../utils/http-methods";
+import { generateBRTDateTime } from "./utils/generate-brt-date-time";
 
 const DEFAULT_CONTENT = { "Content-Type": ContentType.JSON }
 
@@ -43,9 +44,10 @@ export const serviceCreateTask = async (body: string) => {
   // Reorder the object to save in the file
   const orderedTask: TaskModel = {
     id: tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1, // Generate next ID from the database langth
-    created: parsedBody.created = new Date(new Date().setHours(new Date().getHours() - 3)), // Generate created time based on BRT (UTC -3)
+    created: parsedBody.created = await generateBRTDateTime(),
     title: parsedBody.title,
     description: parsedBody.description,
+    followups: [],
     status: 'todo'
   }
 

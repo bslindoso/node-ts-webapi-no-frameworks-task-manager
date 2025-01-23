@@ -1,1 +1,1 @@
-export type OperationType = 'save' | 'update' | 'remove';
+export type OperationType = 'save' | 'update' | 'remove' | 'saveFollowup';

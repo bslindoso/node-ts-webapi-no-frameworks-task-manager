@@ -20,16 +20,54 @@
   },
   {
     "id": 2,
-    "created": "2025-01-19T11:02:42.982Z",
-    "title": "Minha nova tarefa 'quase' impossível",
-    "description": "",
+    "created": "2025-01-22T21:47:21.306Z",
+    "title": "Ir para biblioteca",
+    "description": "Amanhã",
+    "followups": [
+      {
+        "user": "Bruno",
+        "posted": "2025-01-22T21:57:03.468Z",
+        "post": "Que legal!"
+      },
+      {
+        "user": "Jess",
+        "posted": "2025-01-22T21:57:33.340Z",
+        "post": "Awesome"
+      }
+    ],
+    "status": "todo"
+  },
+  {
+    "id": 3,
+    "created": "2025-01-22T21:47:29.982Z",
+    "title": "Ir para academia",
+    "description": "Sempre",
+    "followups": [
+      {
+        "user": "Jess",
+        "posted": "2025-01-22T21:57:49.470Z",
+        "post": "Awesome"
+      },
+      {
+        "user": "Zé",
+        "posted": "2025-01-22T22:05:44.407Z",
+        "post": "🚀 Avente!"
+      }
+    ],
     "status": "todo"
   },
   {
     "id": 4,
-    "created": "2025-01-22T16:16:00.302Z",
-    "title": "Arrumar a casa",
-    "description": "HOJE",
-    "status": "done"
+    "created": "2025-01-22T22:05:00.553Z",
+    "title": "Estudar NodeJs",
+    "description": "Todos os dias se possível",
+    "followups": [
+      {
+        "user": "Zé",
+        "posted": "2025-01-22T22:05:50.586Z",
+        "post": "🚀 Avente!"
+      }
+    ],
+    "status": "todo"
   }
 ]
